@@ -67,20 +67,20 @@ def collate_ava(batch):
 if(opts.dataset == 'jhmdb'):
     path = 'metadata/JHMDB/'
     trainDataset = JHMDB(data_loc=path,pose_encoding_path='data/JHMDB/',file_name='jhmdb_train'+opts.train_split,opts=opts,transform_type='train')
-    valDataset = JHMDB(data_loc=path,pose_encoding_path='data/JHMDB/',file_name='jhmdb_test'+opts.train_split,opts=opts,transform_type='test')
+    valDataset = JHMDB(data_loc=path,pose_encoding_path='data/JHMDB/',file_name='jhmdb_test'+opts.train_split,opts=opts,transform_type='val')
     valDataset_whole = None
     opts.number_of_classes = 21
 elif(opts.dataset == 'hmdb'):
     path = 'metadata/HMDB51/'
     trainDataset = HMDB(data_loc=path,pose_encoding_path='data/HMDB51/',file_name='hmdb_train'+opts.train_split,opts=opts,transform_type='train')
-    valDataset = HMDB(data_loc=path,pose_encoding_path='data/HMDB51/',file_name='hmdb_test'+opts.train_split,opts=opts,transform_type='test')
-    valDataset_whole = HMDB(data_loc=path,pose_encoding_path='data/HMDB51/',file_name='hmdb_test'+opts.train_split,opts=opts,transform_type='test',get_whole_video=True)
+    valDataset = HMDB(data_loc=path,pose_encoding_path='data/HMDB51/',file_name='hmdb_test'+opts.train_split,opts=opts,transform_type='val')
+    valDataset_whole = HMDB(data_loc=path,pose_encoding_path='data/HMDB51/',file_name='hmdb_test'+opts.train_split,opts=opts,transform_type='val',get_whole_video=True)
     opts.number_of_classes = 51
 elif(opts.dataset == 'charades'):
     path = 'metadata/Charades/'
     trainDataset = Charades(data_loc=path,pose_encoding_path='data/Charades/',file_name='charades_train',opts=opts,transform_type='train')
-    valDataset = Charades(data_loc=path,pose_encoding_path='data/Charades/',file_name='charades_test',opts=opts,transform_type='test')
-    valDataset_whole = Charades(data_loc=path,pose_encoding_path='data/Charades/',file_name='charades_test',opts=opts,transform_type='test',get_whole_video=True)
+    valDataset = Charades(data_loc=path,pose_encoding_path='data/Charades/',file_name='charades_test',opts=opts,transform_type='val')
+    valDataset_whole = Charades(data_loc=path,pose_encoding_path='data/Charades/',file_name='charades_test',opts=opts,transform_type='val',get_whole_video=True)
     opts.number_of_classes = 157
 else:
     raise NotImplementedError

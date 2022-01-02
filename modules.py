@@ -25,7 +25,7 @@ class inter_joint_reasoning_module(nn.Module):
 
         y = self.linear(y.squeeze(-1).squeeze(-1).squeeze(-1))
 
-        y_out = functional.gumbel_sigmoid(y,tau=self.gumbel_temperature,hard=True,use_gumbel_noise=self.use_gumbel_noise).unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
+        y_out = functional.gumbel_sigmoid(y,tau=self.gumbel_temperature,hard=False,use_gumbel_noise=self.use_gumbel_noise).unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
 
         return ftr * y_out.expand_as(ftr), y_out
 

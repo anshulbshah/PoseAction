@@ -8,8 +8,7 @@ python train.py --batch_size 16 \
       --max_motion 7 --max_motion_groupwise 4 \
       --model JMRN \
       --paa True --paa_type global_and_groupwise --n_epochs 100 \
-      --n_workers 8 --normalize True --normalize_type area --optimizer adam \
-      --pose_type openpose_coco_v2 --reduced_dim 512 --return_augmented_view True \
-      --save_every 5 --scheduler on_plateau --temperature 0.3 --train_split 1 \
-      --trainer_type ch_wt_contrastive --use_background False --gumbel_val False \
-      --gumbel_temperature 0.66
+      --n_workers 8 \
+      --pose_type openpose_coco_v2 \
+      --save_every 5 --temperature 0.3 --train_split 1 \
+      --use_background False 

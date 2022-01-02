@@ -36,35 +36,29 @@ def default_trainer_ch_wts_contrastive(opts,model,valLoader,trainLoader,device,o
                 # if opts.evaluate_on_train == 'True':
                 #     train_metrics = evaluate_model_ch_wts_contrastive('train', epoch, opts,model,trainLoader,device,criterion)
                 # else:                
-                val_loss,val_acc,val_map = val_metrics['loss'],val_metrics['accuracy'],val_metrics['map']
+                vl_loss,vl_acc,vl_map = val_metrics['loss'],val_metrics['accuracy'],val_metrics['map']
 
                 if opts.scheduler == 'on_plateau':
                     if epoch > 0:   
-                        scheduler.step(val_loss)
+                        scheduler.step(vl_loss)
 
                 if opts.dataset == 'charades':
-                    val_accuracy.append(val_map)
+                    val_accuracy.append(vl_map)
                 else:
-                    val_accuracy.append(val_acc)
+                    val_accuracy.append(vl_acc)
 
-                val_loss.append(val_loss)
-                val_map.append(val_map)
+                val_loss.append(vl_loss)
+                val_map.append(vl_map)
                 get_current_lr = get_lr(optimizer)
-
-                if 'channel_weights' in  val_metrics:
-                    heatmap_fig = utils.draw_heatmap(joint_names,val_metrics['class_names'],val_metrics['channel_weights'])
-                else:
-                    heatmap_fig = torch.zeros([3,3])
             
                 wandb_dict = {
-                    "val Accuracy": val_acc,
-                    "val Loss": val_loss,
-                    "val mAP":val_map,
+                    "val Accuracy": vl_acc,
+                    "val Loss": vl_loss,
+                    "val mAP":vl_map,
                     "Max val mAP":max(val_map),
                     "Max val Acc" : max(val_accuracy),
                     "Learning Rate":get_current_lr,
                     "global_step" :epoch,
-                    "ch_wt2":wandb.Image(heatmap_fig),
                     'm_classwise_running':val_metrics['m_class_wise_accuracy'],
                 }
 
@@ -122,26 +116,25 @@ def default_trainer_ch_wts_contrastive(opts,model,valLoader,trainLoader,device,o
             t.update()
             
     val_metrics = evaluate_model_ch_wts_contrastive('val', epoch, opts,model,valLoader,device,criterion)
-    val_loss,val_acc,val_map = val_metrics['loss'],val_metrics['accuracy'],val_metrics['map']
+    vl_loss,vl_acc,vl_map = val_metrics['loss'],val_metrics['accuracy'],val_metrics['map']
     if opts.dataset == 'charades':
-        val_accuracy.append(val_map)
+        val_accuracy.append(vl_map)
     else:
-        val_accuracy.append(val_acc)
-    val_loss.append(val_loss)
-    val_map.append(val_map)
+        val_accuracy.append(vl_acc)
+    val_loss.append(vl_loss)
+    val_map.append(vl_map)
     is_best = save_all_information(opts.dataset + '/' + opts.name,epoch,train_accuracy,val_accuracy,train_loss,val_loss,model)
     print('Max val accuracy is {}'.format(max(val_accuracy)))
     print('Max val mAP is {}'.format(max(val_map)))
     get_current_lr = get_lr(optimizer)
     wandb_dict = {
-        "val Accuracy": val_acc,
-        "val Loss": val_loss,
-        "val mAP":val_map,
+        "val Accuracy": vl_acc,
+        "val Loss": vl_loss,
+        "val mAP":vl_map,
         "Max val mAP":max(val_map),
         "Max val Acc" : max(val_accuracy),
         "Learning Rate":get_current_lr,
         "global_step" :epoch,
-        "ch_wt2":wandb.Image(heatmap_fig),
         'm_classwise_running':val_metrics['m_class_wise_accuracy'],
     }
     wandb.log(wandb_dict)
