@@ -33,8 +33,7 @@ if opts.tags != "":
     extra_args['tags'] = opts.tags
 if opts.name is not None:
     extra_args['name'] = opts.name
-# wandb.init(project="PoseAction",entity="ashah95",**extra_args)
-wandb.init(project="improved-potion-new",entity="umd",**extra_args)
+wandb.init(project="PoseAction",**extra_args)
 wandb.run.save()
 opts.name = wandb.run.name
 wandb.config.update(opts)

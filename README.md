@@ -12,6 +12,7 @@ Follow one of the following to set up the environment:
   - `conda create -n pose_action python=3.7`
   - `conda install pytorch==1.8.0 torchvision==0.9.0 cudatoolkit=11.1 -c pytorch -c conda-forge`
   - `pip install opencv-python matplotlib wandb tqdm joblib scipy scikit-learn`
+- C) Make an account on wandb and make required changes to `train.py` L36
 
 
 ## Prepare data
