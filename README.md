@@ -1,4 +1,4 @@
-# PoseAction
+# Pose and Joint-Aware Action Recognition
 
 Code and Pre-processed data for the paper Pose and Joint-Aware Action Recognition accepted to WACV 2022
 
