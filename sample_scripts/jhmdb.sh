@@ -2,8 +2,8 @@
 python train.py --batch_size 16 \
       --channels 3 --compressed_dim 128 \
       --contrastive_loss_type all --dataset jhmdb \
-      --dropout False --eca_module sigmoid_conv_relu2 \
-      --l1_linear 50 --l1_start 50 --learning_rate 1E-4 \
+      --dropout False \
+      --contrastive_linear 50 --contrastive_start 50 --learning_rate 1E-4 \
       --loss_weights_contrastive 0.05 --lr_patience 5 \
       --max_motion 7 --max_motion_groupwise 4 \
       --model JMRN \
