@@ -2,6 +2,8 @@
 
 Code and Pre-processed data for the paper Pose and Joint-Aware Action Recognition accepted to WACV 2022
 
+[['Paper'](https://openaccess.thecvf.com/content/WACV2022/papers/Shah_Pose_and_Joint-Aware_Action_Recognition_WACV_2022_paper.pdf)] [['Video'](https://youtu.be/BqaOlF_LOMA)
+
 ## Set-up environment
 - Tested with Python Version : 3.7.11
   
